@@ -9,16 +9,35 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    camelVersion = '3.15.0'
+}
+
 dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
+    implementation 'org.slf4j:slf4j-api:1.7.32'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.apache.camel.springboot:camel-spring-boot:$camelVersion"
+    implementation "org.apache.camel.springboot:camel-spring-boot-bom:$camelVersion"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.1'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
     testLogging.showStandardStreams = true
+}
+
+task info {
+    repositories.each {
+        println it.url
+    }
+
+    project.properties.each {
+        //println it.key + " - " + it.value
+    }
 }
