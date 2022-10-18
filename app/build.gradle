@@ -1,16 +1,20 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.4'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '2.7.4'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
     id "io.freefair.lombok" version 'latest.integration'
     id 'java'
 }
+
+group = 'net.miwashi'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
 }
 
 ext {
-    camelVersion = '3.15.0'
+    camelVersion = '3.19.0'
 }
 
 dependencies {
@@ -22,7 +26,9 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation "org.apache.camel.springboot:camel-spring-boot:$camelVersion"
-    implementation "org.apache.camel.springboot:camel-spring-boot-bom:$camelVersion"
+    implementation "org.apache.camel.springboot:camel-spring-boot-starter:$camelVersion"
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.2.2.RELEASE'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.1'
 }
